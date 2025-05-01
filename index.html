@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>بحبك يا إسراء</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1c1c1c;
+      color: white;
+      font-family: 'Amiri Quran', serif;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .message {
+      font-size: 50px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .heart-border {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      color: #8b0000;
+      font-size: 18px;
+      animation: float 10s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .heart-letter {
+      position: absolute;
+      font-size: 40px;
+      z-index: 2;
+      top: 80%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <div class="message">بحبك يا إسراء</div>
+  <div id="heartLetter" class="heart-letter">❤️A❤️</div>
+  <div class="heart-border" id="hearts"></div>
+
+  <script>
+    const heartsContainer = document.getElementById('hearts');
+    for (let i = 0; i < 40; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${5 + Math.random() * 5}s`;
+      heart.textContent = '❤️';
+      heartsContainer.appendChild(heart);
+    }
+
+    const heartLetter = document.getElementById('heartLetter');
+    let toggle = true;
+
+    setInterval(() => {
+      heartLetter.textContent = toggle ? '❤️A❤️' : '❤️E❤️';
+      heartLetter.style.opacity = '1';
+      setTimeout(() => {
+        heartLetter.style.opacity = '0';
+      }, 800);
+      toggle = !toggle;
+    }, 2000);
+  </script>
+</body>
+</html>
